@@ -8,12 +8,14 @@ find_package(PkgConfig) #finding pkg-config is a helper tool
 find_package(Threads)
 find_package(OpenCV REQUIRED)
 find_package(CUDA REQUIRED)
-find_package(TensorRT REQUIRED)
+
+
+#find_package(TensorRT REQUIRED)
 
 #include_directories(${OpenCV_INCLUDE_DIRS})
-include_directories(
-   onnxruntime/include
-)
+#include_directories(
+#   onnxruntime/include
+#)
 #link_directories(/media/sd/objectDetection/onnxruntime_jetson_single_object/onnxruntime/lib)
 
 add_executable(${PROJECT_NAME} main.cpp )
@@ -27,10 +29,14 @@ add_executable(${PROJECT_NAME} main.cpp )
 
 
 target_include_directories(${PROJECT_NAME} PUBLIC 
-${OpenCV_INCLUDE_DIRS} ${CUDA_INCLUDE_DIRS} ${TensorRT_INCLUDE_DIRS}
+${OpenCV_INCLUDE_DIRS} ${CUDA_INCLUDE_DIRS} 
+#${TensorRT_INCLUDE_DIRS}
 #/usr/include/aarch64-linux-gnu 
+/home/ek/install/TensorRT-8.4.1.5/include
 )
 target_link_libraries( ${PROJECT_NAME} PUBLIC 
-${OpenCV_LIBS} ${CUDA_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${TensorRT_LIBRARIES}
+${OpenCV_LIBS} ${CUDA_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} 
+#${TensorRT_LIBRARIES}
 #/usr/lib/aarch64-linux-gnu
+/home/ek/install/TensorRT-8.4.1.5/lib
 )
